@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	 <meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=0.1" />
+
+	<title>display</title>
+</head>
+<img src="{{ url_for('static',filename='images/logo.png')}}" alt="logo for website"></img>
+<h5><u><b>MY PORTFOLIO</u></h5>
+<body>
+<div class="place">
+<div class="position">
+<h1>NAME:{{account[1]}}</h1>
+<h1>PROFESSION:{{account[2]}}</h1>
+<h1>GENDER:{{account[3]}}</h1>
+<h1>CONTACT NO:{{account[0]}}</h1>
+<h1>ADDRESS:{{account[5]}}</h1>
+<h1>CITY:{{account[4]}}</h1>
+</div>
+</div>
+<div class="logout">
+<br><button onclick="window.location.href='/logout';">
+    LOG OUT
+</button>
+</div>
+
+<div class="update">
+<form action="/update_page" method="post">
+    <input type="hidden" name='phone'  value="{{account[0]}}"><br>
+    <button type="submit" value="Submit">UPDATE PROFILE</button>
+</form>
+</div>
+
+<div class="delete">
+<form action="/delete_profile" method="post">
+    <input type="hidden" name='phone'  value="{{account[0]}}"><br>
+    <button onclick="myFunction()"  type="submit" value="Submit">DELETE </button>
+</form>
+</div>
+</div>
+
+
+<style>
+button{
+	text-align:center;
+	background-color:#000000;
+	color:white;
+	font-size:17px;
+}
+
+h1{
+	padding-left:475px;
+	}
+h5{
+	font-size:35px;
+	padding-left:500px;
+	}
+img{
+		position:absolute;
+		left:10px;
+		top:10px;
+		}
+
+.logout{
+		position:absolute;
+		top:10px;
+		right:25px;
+	}
+
+.update{
+		position: absolute;
+		top:10px;
+		right:225px;
+	}
+.delete{
+		position:absolute;
+		top:10px;
+		right:130px;
+	}
+
+
+
+
+
+</style>
+
+<script>
+function myFunction() {
+  confirm("Are you sure you want to delete account!");
+}
+</script>
+
+
+</body>
+</html>

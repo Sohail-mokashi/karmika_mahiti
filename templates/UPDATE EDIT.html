@@ -1,0 +1,84 @@
+<html>
+<head>
+	 <meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=0.1" />
+    
+<title>update profile</title>
+</head>
+
+<img src="{{ url_for('static',filename='images/logo.png')}}" alt="logo for website"></img>
+<body>
+<h2>"Edit Your Details And Update Your Profile"</h2>
+<form  action="/update_profile" method="post" id="register">
+	  <label><b>PLACE</label>
+    
+    <input type="radio" id="hubli" name="place" value="hubli" required>
+    <label for="hubli">HUBLI</label>
+    <input type="radio" id="dharwad" name="place" value="dharwad" required>
+    <label for="dharwad">DHARWAD</label><br><br>
+    <label><b>FULLNAME</label>
+    <input type="text" name="name" value="{{account[1]}}"> <br> <br>
+    <label><b>ADDRESS</label>
+    
+    <input style="height:100px;font-size:14pt;" type="text" name="address" value="{{account[5]}}">
+    <br> <br>
+     <label><b>POSTAL CODE</label>
+    <input type="number" name="zip" value="{{account[9]}}"><br><br>
+    <label><b>PASSWORD</label>
+    <input type="password" name="password" value="{{account[6]}}"> <br>
+    <input type="hidden" name="phone" value="{{account[0]}}">
+    <br> <br>
+    <button  id="submit" type="submit"value="Submit">UPDATE</button>
+</form>
+<style>
+	body{
+		padding-left:80px;
+		padding-top:150px;
+	
+		}
+	img{
+		position:absolute;
+		left:10px;
+		top:10px;
+		}
+	h2{
+		text-align:center;
+		}
+		
+	form{
+		margin : auto;
+		border: 5px solid black;
+		border-radius:20px;
+		padding-left: 30px;
+		padding-top:30px;
+		padding-bottom:30px;
+		width:400px;
+		
+	}
+	#submit{
+		position:relative;
+			left:130px;
+		}
+	
+	label{
+		text-align:right;
+		display:inline-block;
+	}
+	.topcorner{
+		position: absolute;
+		top:10px;
+		right:15px;
+		}
+	button{
+		text-align:center;
+	background-color:#000000;
+	color:white;
+	font-size:17px;
+	}
+		
+	
+
+</body>
+
+
+</html>

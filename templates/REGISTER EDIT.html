@@ -1,0 +1,157 @@
+<html>
+<head>
+	 <meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=0.1" />
+    
+	<title>
+        Registration Page
+    </title>
+</head>
+<img src="{{ url_for('static',filename='images/logo.png')}}" alt="logo for website"></img>
+<h2> "Create Your Profile By Filling And Submitting This Form " </h2>
+<body onload="getLocation()">
+<div class="topcorner"><button onclick="window.location.href='/';">HOME</button></></div>
+<form action="/register" method="post" id="register">
+
+    <label><strong>PLACE</strong></label>
+    <input type="radio" id="hubli" name="place" value="hubli" required>
+    <label for="hubli">HUBLI</label>
+    <input type="radio" id="dharwad" name="place" value="dharwad" required>
+    <label for="dharwad">DHARWAD</label> <br><br>
+	
+    <label><strong>NAME</strong></label>
+    <input type="text" name="name" size="30"  required> <br> <br>
+	
+	<label><strong>GENDER</strong></label>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">MALE</label>
+    <input type="radio" id="female" name="gender" value="female" required>
+    <label for="female">FEMALE</label>
+    <input type="radio" id="other" name="gender" value="other" required>
+    <label for="other">OTHER</label>
+    <br>
+    <br>
+  
+  <label><strong>PROFESSION</strong></label>
+    <select name="profession">
+        <option></option>
+        <option value="carpenter" required>CARPENTER</option>
+        <option value="mechanic" required>MECHANIC</option>
+        <option value="painter" required>PAINTER</option>
+        <option value="electrician" required>ELECTRICIAN</option>
+        <option value="plumber" required>PLUMBER</option>
+    </select>
+	<br>
+	<br>
+
+   <label><strong>MOBILE_NO</strong></label>
+    
+    <input type="text" name="country code"  value="+91" size="2" required>
+    <input type="number" name="phone" size="10" required> <br> <br>
+   
+	<label><strong>ADDRESS</strong></label>
+    <textarea name="address" cols="40" rows="4" value="address" required></textarea>
+    <br> <br>
+	
+	<label><strong>AREA<strong></label>
+	<input type="text" required> <br> <br>
+   
+    <label><strong>POSTAL CODE </strong></label>
+    <input type="text" name="zip" size="6" max="6" required><br><br>
+   
+   <label><strong>PASSWORD</strong></label>
+    <input type="Password" name="password" placeholder="Create your password" required> <br>
+    <br> <br>
+    <input type="hidden" name="lat" id="lat">
+    <input type="hidden" name="lan" id="lan">
+    <button id="submit" class="buton" type="submit" value="Submit">SUBMIT</button>
+    </form>
+	
+
+<style>
+	body{
+		padding:70px;
+		}
+	img{
+		position:absolute;
+		left:10px;
+		top:10px;
+		}
+		
+	h2{
+		text-align:center;
+		}
+	form{
+		margin : auto;
+		border: 5px solid black;
+		border-radius:20px;
+		padding: 20px;
+		width:350px;
+	}
+	#submit{
+		position:relative;
+			left:130px;
+		}
+	button{
+		text-align:center;
+		background-color:#000000;
+		color:white;
+		font-size:17px;
+}
+	label{
+		text-align:right;
+		display:inline-block;
+	}
+	.topcorner{
+		position: absolute;
+		top:10px;
+		right:25px;
+	}
+		
+</style>
+
+
+    <script>
+var x = document.getElementById("lat");
+var y = document.getElementById("lan");
+
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    x=0;
+    y=0;
+  }
+}
+
+function showPosition(position) {
+  x.value=position.coords.latitude;
+  y.value=position.coords.longitude;
+ }
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      x.value=0;
+      y.value=0;
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.value=0;
+      y.value=0;
+      break;
+    case error.TIMEOUT:
+      x.value=0;
+      y.value=0;
+      break;
+    case error.UNKNOWN_ERROR:
+      x.value=0;
+      y.value=0;
+      break;
+  }
+}
+</script>
+
+<h3 id="d1"></h3>
+</body>
+</html>

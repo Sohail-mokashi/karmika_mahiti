@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=0.25" />
+
+    <title>Home</title>
+</head>
+<img id="logoplace" src="{{ url_for('static',filename='images/logo.png')}}">
+<img src="{{ url_for('static',filename='images/logoedit1.jpg')}}"><br><br><br>
+<body onload="getLocation()">
+<h1><b>"Service Provider" </h1>
+<hr id="hr1" width="700px">
+<h4> "Get Details , Avail Services , Work Done"</h4>
+<div class="place">
+    <div style="float:left; width:250px;">
+        <label><b>CREATE PROFILE </label><br><br><button  onclick="window.location.href='/register_page';">
+        <b> REGISTER
+    </button>
+    </div>
+
+    <div  style="float:left; width:310px";>
+        <form action="/login" method="post">
+            <label><b>MOBILE_NO</label>
+            <input type="text" name="phone" size="10" max="10" min="10" required><br><br>
+            <label><b>PASSWORD</label>
+            <input type="password" name='password' size="10" min="6" max="6" required><br><br>
+            <button type="submit" value="Submit">
+                <span title="CRAFTSMEN - CAN VIEW THEIR PROFILE"><b>LOG IN</span>
+            </button><br><br>
+            <a href="">Forgot Password?</a>
+        </form>
+    </div>
+
+
+
+    <div style="float:left;  width:400px;">
+        <form action="/find" method="post">
+            <label><b>PLACE</b></label>
+            <input type="radio" id="hubli" name="place" value="hubli" required>
+            <label for="hubli"><b>HUBLI</label>
+            <input type="radio" id="dharwad" name="place" value="dharwad" required>
+            <label for="dharwad"><b>DHARWAD</label><br>
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="lan" id="lan"><br>
+
+            <label><b>AREA</b></label>
+            <input id="d1" type="text" name="address" required><br><br>
+
+           <label><b>PROFESSION</label>
+            <select name="profession">
+                <option value="carpenter">CARPENTER</option>
+                <option value="mechanic">MECHANIC</option>
+                <option value="painter">PAINTER</option>
+                <option value="electrician">ELECTRICIAN</option>
+                <option value="plumber">PLUMBER</option>
+            </select>
+            <br><br>
+            <button type="submit" value="Submit"><span title="PUBLIC-TO FIND REQUIREDCRAFTSMEN"><b>FIND</span>
+            </button>
+        </form><br><br><br><br><br>
+    </div>
+</div>
+
+<div class="about"><a target="_blank" href=""><button type="submit">ABOUT</button></a></div>
+
+<h3>{{info}}</h3>
+<hr id="hr2" width="1600px">
+<h2><u><b>CONTACT-INFO</u></h2><br>
+<img id="clglogo" src="{{ url_for('static',filename='images/clgname.jpg')}}" alt="college logo with name"></img>
+<h5><u><b>HelpLine</u></h5>
+<p>&#128222;  (0836) 2255619/2464699 (9:30AM-5:30PM)</p>
+<p> &#128231;   cet.sdm@gmail.com </p>
+<a target="_blank" href="https://www.google.co.in/maps/place/Shri+Dharmasthala+Manjunatheshwara+College+of+Engineering+and+Technology./@15.4306697,75.0123913,17z/data=!3m1!4b1!4m5!3m4!1s0x3bb8d2f55d8d3f33:0x6f5b1e611213bba7!8m2!3d15.4306697!4d75.01458?hl=en&authuser=0"><img id="map" src="{{ url_for('static',filename='images/mob_map.jpg')}}" alt="google map">
+</img></a>
+
+<style>
+
+h5{
+	font-size:30px;
+	padding-left:540px;
+	}
+h2{
+	padding-left:500px;
+	}
+#clglogo{
+	padding-left:230px;
+	}
+p{
+	font-size:20px;
+	padding-left:430px;
+	}
+button{
+	text-align:center;
+	background-color:#000000;
+	color:white;
+	font-size:17px;
+}
+button:hover{
+	background-color: rgb(39 , 39 , 45);
+	}
+.logo{
+	position:absolute
+	img-size: 30px;
+	}
+#logoplace{
+		position:absolute;
+		left:-190px;
+		top:15px;
+		}
+img{
+	padding-left:190px;
+	}
+.place{
+    position:relative;
+    top:-60px;
+	padding-left:225px;
+	}
+h3{
+	position:absolute;
+	bottom:10px;
+	right:40px;
+	font-size:20px;
+	}
+h1{
+	font-size:50px;
+	position:relative;
+	left:420px;
+	top:-65px;
+	}
+h4{
+	font-size:35px;
+	position:relative;
+	left:315px;
+	top:-85px;
+	}
+
+label{
+	font-size:20px;
+	}
+
+.about{
+		position: absolute;
+		top:10px;
+		right:15px;
+	}
+span{
+	font-size:17px;
+	}
+#hr1{
+	position:relative;
+	top:-70px;
+	border: 1px solid black;
+	}
+#map{
+	padding-left:430px;
+	}
+
+</style>
+
+<script src="https://maps.googleapis.com/maps/apis/js?key=YOUR_KEY&callback=initMap&libraries=&v=weekly" defer>
+</script>
+
+<script>
+function initMap() { //initialize and add map
+const sdm = { lat:15.430879, lng:75.014607 }; // the location of sdm
+const map = new google.maps.Map(document.getElementById("map"), { zoom:4, center:sdm, }); // map centered at sdm
+const marker = new google.maps.Marker({position:sdm , map:map,});
+}
+</script>
+<script>
+var x = document.getElementById("lat");
+var y = document.getElementById("lan");
+var z = document.getElementById("d1");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    x=0;
+    y=0;
+  }
+}
+
+function showPosition(position) {
+  x.value=position.coords.latitude;
+  y.value=position.coords.longitude;
+  var apikey = 'fc2e8bb5ba6b46da8357e8df2e25e6e9';
+  var latitude =x.value;
+  var longitude =y.value;
+
+  var api_url = 'https://api.opencagedata.com/geocode/v1/json'
+
+  var request_url = api_url
+    + '?'
+    + 'key=' + apikey
+    + '&q=' + encodeURIComponent(latitude + ',' + longitude)
+    + '&pretty=1'
+    + '&no_annotations=1';
+
+  // see full list of required and optional parameters:
+  // https://opencagedata.com/api#forward
+
+  var request = new XMLHttpRequest();
+  request.open('GET', request_url, true);
+
+  request.onload = function() {
+    // see full list of possible response codes:
+    // https://opencagedata.com/api#codes
+
+    if (request.status == 200){
+      // Success!
+      var data = JSON.parse(request.responseText);
+      z.value=data.results[0].formatted;
+    }
+  };
+
+  request.onerror = function() {
+    // There was a connection error of some sort
+    console.log("unable to connect to server");
+  };
+
+  request.send();  // make the request
+}
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      x.value=0;
+      y.value=0;
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.value=0;
+      y.value=0;
+      break;
+    case error.TIMEOUT:
+      x.value=0;
+      y.value=0;
+      break;
+    case error.UNKNOWN_ERROR:
+      x.value=0;
+      y.value=0;
+      break;
+  }
+}
+
+
+
+</script>
+
+</body>
+</html>
